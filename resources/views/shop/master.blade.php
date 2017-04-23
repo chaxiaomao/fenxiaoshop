@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>@yield('title')</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" type="text/css" href="/css/weui.css">
+    <link rel="stylesheet" type="text/css" href="/css/wxc.css">
+</head>
+<style>
+
+</style>
+
+<body>
+    <!-- tooltips -->
+    <div class="wxc_toptips"><span></span></div>
+    <div>
+        @yield('content')
+    </div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+@yield('m-js')
+</html>
