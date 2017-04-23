@@ -4,7 +4,10 @@
 
 @section('content')
 
-    @endsection
+    @foreach($products as $product)
+        <img src="{{$product->display}}" />
+    @endforeach
+@endsection
 
 @section('m-js')
 <script>
@@ -12,4 +15,4 @@
     $("#cart").attr("href","{{url('cart')}}");
 
 </script>
-    @endsection
+@endsection
