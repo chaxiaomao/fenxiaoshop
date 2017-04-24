@@ -33,4 +33,5 @@ Route::group(['perfix' => 'service'], function () {
     Route::post('/service/register', 'Service\MemberController@register');
     Route::post('/service/login', 'Service\MemberController@login');
     Route::any('/service/wechat', 'Service\WxController@serve');
+    Route::any('/service/oauth_callback', 'Service\OauthController@OauthCallback');
 });

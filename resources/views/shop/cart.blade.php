@@ -13,7 +13,7 @@
         $("#cart").addClass("mui-active");
         $("#cart").attr("href","#");
         $("#personal").attr("href","{{url('personal')}}");
-        $("#home").attr("href","{{url('/')}}");
+        $("#home").attr("href","{{url('/home')}}");
 
     </script>
     @endsection
