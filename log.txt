@@ -392,3 +392,11 @@ request body = <TemplateSMS>
                   </TemplateSMS>
 request url = https://fenxiaoshop.tunnel.2badata.com:8883/2013-12-26/Accounts/8a216da85b602cda015b8b501577131d/SMS/TemplateSMS?sig=D38725E85AC02D711DBB7D36CC670B8E
 response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?><Response><statusCode>172001</statusCode><statusMsg>网络错误</statusMsg></Response>
+request body = <TemplateSMS>
+                    <to>15622965560</to>
+                    <appId>8a216da85b602cda015b8b5016f61323</appId>
+                    <templateId>1</templateId>
+                    <datas><data>966589</data><data>60</data></datas>
+                  </TemplateSMS>
+request url = https://fenxiaoshop.tunnel.2badata.com:8883/2013-12-26/Accounts/8a216da85b602cda015b8b501577131d/SMS/TemplateSMS?sig=D14DDEE0CF5DB13A9B2F80AA4CC20C1F
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?><Response><statusCode>172001</statusCode><statusMsg>网络错误</statusMsg></Response>

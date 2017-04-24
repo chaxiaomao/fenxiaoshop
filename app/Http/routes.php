@@ -10,9 +10,8 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
 Route::get('/', function () {
-    return view('welcome.blade.php');
+    return view('welcome');
 });
 
 Route::get('/cart', function () {
@@ -22,7 +21,7 @@ Route::get('/cart', function () {
 Route::get('/personal', function () {
     return view('shop.personal');
 });
-Route::get('/home', 'View\HomeController@home');
+Route::any('/home', 'View\HomeController@home');
 
 Route::get('/login', 'View\MemberController@toLogin');
 Route::get('/register', 'View\MemberController@toRegister');
