@@ -64,6 +64,7 @@ Class ValidateController extends Controller
         $tempPhone->save();
         $m3_result->status = 0;
         $m3_result->message = "发送成功";
+        $m3_result->code = $code;
         return $m3_result->toJson();
     }
 

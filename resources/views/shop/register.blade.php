@@ -133,6 +133,7 @@
 
                     $(".wxc_toptips").show();
                     $(".wxc_toptips span").html('发送成功');
+                    alert("测试短信验证码:" + data.code);
                     setTimeout(function () {
                         $(".wxc_toptips").hide();
                     }, 2000);
@@ -160,27 +161,35 @@
                 url: "/service/register",
                 dataType: "json",
                 cache: false,
-                data: {phone: phone, password: password, confirm: confirm,
-                    phone_code: phone_code, _token: "{{csrf_token()}}"},
-                success: function(data) {
-                    if(data == null) {
+                data: {
+                    phone: phone, password: password, confirm: confirm,
+                    phone_code: phone_code, _token: "{{csrf_token()}}"
+                },
+                success: function (data) {
+                    if (data == null) {
                         $(".wxc_toptips").show();
                         $(".wxc_toptips span").html('服务端错误');
-                        setTimeout(function() {$(".wxc_toptips").hide();}, 2000);
+                        setTimeout(function () {
+                            $(".wxc_toptips").hide();
+                        }, 2000);
                         return;
                     }
-                    if(data.status != 0) {
+                    if (data.status != 0) {
                         $(".wxc_toptips").show();
                         $(".wxc_toptips span").html(data.message);
-                        setTimeout(function() {$(".wxc_toptips").hide();}, 2000);
+                        setTimeout(function () {
+                            $(".wxc_toptips").hide();
+                        }, 2000);
                         return;
                     }
 
                     $(".wxc_toptips").show();
                     $(".wxc_toptips span").html('注册成功');
-                    setTimeout(function() {$(".wxc_toptips").hide();}, 2000);
+                    setTimeout(function () {
+                        $(".wxc_toptips").hide();
+                    }, 2000);
                 },
-                error: function(xhr, status, error) {
+                error: function (xhr, status, error) {
                     console.log(xhr);
                     console.log(status);
                     console.log(error);
@@ -190,47 +199,61 @@
 
         function verifyPhone(phone, password, confirm, phone_code) {
             // 手机号不为空
-            if(phone == '') {
+            if (phone == '') {
                 $(".wxc_toptips").show();
                 $(".wxc_toptips span").html('请输入手机号');
-                setTimeout(function() {$(".wxc_toptips").hide();}, 2000);
+                setTimeout(function () {
+                    $(".wxc_toptips").hide();
+                }, 2000);
                 return false;
             }
             // 手机号格式
-            if(phone.length != 11 || phone[0] != '1') {
+            if (phone.length != 11 || phone[0] != '1') {
                 $(".wxc_toptips").show();
                 $(".wxc_toptips span").html('手机格式不正确');
-                setTimeout(function() {$(".wxc_toptips").hide();}, 2000);
+                setTimeout(function () {
+                    $(".wxc_toptips").hide();
+                }, 2000);
                 return false;
             }
-            if(password == '' || confirm == '') {
+            if (password == '' || confirm == '') {
                 $(".wxc_toptips").show();
                 $(".wxc_toptips span").html('密码不能为空');
-                setTimeout(function() {$(".wxc_toptips").hide();}, 2000);
+                setTimeout(function () {
+                    $(".wxc_toptips").hide();
+                }, 2000);
                 return false;
             }
-            if(password.length < 6 || confirm.length < 6) {
+            if (password.length < 6 || confirm.length < 6) {
                 $(".wxc_toptips").show();
                 $(".wxc_toptips span").html('密码不能少于6位');
-                setTimeout(function() {$(".wxc_toptips").hide();}, 2000);
+                setTimeout(function () {
+                    $(".wxc_toptips").hide();
+                }, 2000);
                 return false;
             }
-            if(password != confirm) {
+            if (password != confirm) {
                 $(".wxc_toptips").show();
                 $(".wxc_toptips span").html('两次密码不相同!');
-                setTimeout(function() {$(".wxc_toptips").hide();}, 2000);
+                setTimeout(function () {
+                    $(".wxc_toptips").hide();
+                }, 2000);
                 return false;
             }
-            if(phone_code == '') {
+            if (phone_code == '') {
                 $(".wxc_toptips").show();
                 $(".wxc_toptips span").html('手机验证码不能为空!');
-                setTimeout(function() {$(".wxc_toptips").hide();}, 2000);
+                setTimeout(function () {
+                    $(".wxc_toptips").hide();
+                }, 2000);
                 return false;
             }
-            if(phone_code.length != 6) {
+            if (phone_code.length != 6) {
                 $(".wxc_toptips").show();
                 $(".wxc_toptips span").html('手机验证码为6位!');
-                setTimeout(function() {$(".wxc_toptips").hide();}, 2000);
+                setTimeout(function () {
+                    $(".wxc_toptips").hide();
+                }, 2000);
                 return false;
             }
             return true;
