@@ -4,14 +4,13 @@ namespace App\Http\Controllers\Service;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\M3Result;
-use App\Tool\Validate\ValidateCode;
-use App\Tool\SMS\SendTemplateSMS;
 use App\Entity\TempPhone;
 use App\Entity\Member;
 
 class MemberController extends Controller
 {
-    public function login() {
+    public function login()
+    {
 
     }
 
@@ -51,7 +50,6 @@ class MemberController extends Controller
                 $m3_result->message = '手机验证码为6位';
                 return $m3_result->toJson();
             }
-
             $tempPhone = TempPhone::where('phone', $phone)->first();
             if ($tempPhone->code == $phone_code) {
                 if (time() > strtotime($tempPhone->deadline)) {
@@ -59,12 +57,8 @@ class MemberController extends Controller
                     $m3_result->message = '手机验证码不正确';
                     return $m3_result->toJson();
                 }
-
-                $member = new Member;
-                $member->phone = $phone;
-                $member->password = md5('wxc' . $password);
-                $member->save();
-
+                $user = $req->session()->get('wechat_user');
+                Member::where('openid', $user['id'])->update(['phone' => $phone, 'password' => md5('wxc' . $password)]);
                 $m3_result->status = 0;
                 $m3_result->message = '注册成功';
                 return $m3_result->toJson();

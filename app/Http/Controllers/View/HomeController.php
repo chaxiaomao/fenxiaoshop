@@ -3,7 +3,6 @@ namespace App\Http\Controllers\View;
 
 use App\Http\Controllers\Controller;
 use App\Entity\Product;
-use App\Http\Requests\Request;
 use EasyWeChat\Foundation\Application;
 
 class HomeController extends Controller
@@ -31,8 +30,6 @@ class HomeController extends Controller
             // 这里不一定是return，如果你的框架action不是返回内容的话你就得使用
             // $oauth->redirect()->send();
         }
-        // 已经登录过
-        $user = session()->get('wechat_user');
         $products = Product::where('num', '>', '0')->get();
         return view('shop.home')->with('products', $products);
     }

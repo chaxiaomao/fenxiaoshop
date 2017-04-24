@@ -1,9 +1,10 @@
 @extends('shop.shopbase')
 
-@section('title','个人中心')
+@section('title','登录-注册')
 
 @section('content')
-    个人中心
+    <a href="{{url('login')}}" class="weui-btn weui-btn_plain-primary">登陆</a>
+    <a href="{{url('register')}}" class="weui-btn weui-btn_plain-primary weui-btn_plain-disabled">注册</a>
 @endsection
 
 @section('m-js')

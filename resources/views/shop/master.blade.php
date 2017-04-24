@@ -8,6 +8,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="stylesheet" type="text/css" href="/css/weui.css">
     <link rel="stylesheet" type="text/css" href="/css/wxc.css">
+    <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
 </head>
 <style>
 
@@ -21,6 +22,5 @@
     </div>
 
 </body>
-<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
 @yield('m-js')
 </html>

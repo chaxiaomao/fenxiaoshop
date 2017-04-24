@@ -18,9 +18,7 @@ Route::get('/cart', function () {
     return view('shop.cart');
 });
 
-Route::get('/personal', function () {
-    return view('shop.personal');
-});
+Route::get('/personal', 'View\PersonalController@personal');
 Route::any('/home', 'View\HomeController@home');
 
 Route::get('/login', 'View\MemberController@toLogin');

@@ -6,7 +6,6 @@
         <p class="weui-toast__content">数据加载中</p>
     </div>
 </div>
-</div>
 <script type="text/javascript">
     // toast
     $(function(){

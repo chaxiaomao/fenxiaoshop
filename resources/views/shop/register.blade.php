@@ -1,7 +1,7 @@
 @extends('shop.master')
 
-{{--@include('component.loading')--}}
 @section('title','登陆')
+
 <style>
     p {
         text-align: center;
@@ -13,6 +13,8 @@
         width: 80%;
     }
 </style>
+@include('component.loading')
+
 @section('content')
     <div class="weui-cells__title">微小茶 - 注册</div>
     <div class="weui-cells weui-cells_form">
@@ -130,7 +132,6 @@
                         }, 2000);
                         return;
                     }
-
                     $(".wxc_toptips").show();
                     $(".wxc_toptips span").html('发送成功');
                     alert("测试短信验证码:" + data.code);
@@ -165,6 +166,9 @@
                     phone: phone, password: password, confirm: confirm,
                     phone_code: phone_code, _token: "{{csrf_token()}}"
                 },
+                beforeSend: function () {
+                    $("#loadingToast").css("display", "block");
+                },
                 success: function (data) {
                     if (data == null) {
                         $(".wxc_toptips").show();
@@ -182,12 +186,12 @@
                         }, 2000);
                         return;
                     }
-
                     $(".wxc_toptips").show();
                     $(".wxc_toptips span").html('注册成功');
                     setTimeout(function () {
                         $(".wxc_toptips").hide();
                     }, 2000);
+                    location.href = "{{url('/personal')}}";
                 },
                 error: function (xhr, status, error) {
                     console.log(xhr);
