@@ -10,9 +10,8 @@
     <link rel="stylesheet" type="text/css" href="/css/wxc.css">
     <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
 </head>
-<style>
 
-</style>
+@yield('m-style')
 
 <body>
     <!-- tooltips -->
@@ -20,7 +19,6 @@
     <div>
         @yield('content')
     </div>
-
 </body>
 @yield('m-js')
 </html>

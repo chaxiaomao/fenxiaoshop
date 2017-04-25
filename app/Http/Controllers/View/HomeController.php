@@ -30,7 +30,7 @@ class HomeController extends Controller
             // 这里不一定是return，如果你的框架action不是返回内容的话你就得使用
             // $oauth->redirect()->send();
         }
-        $products = Product::where('num', '>', '0')->get();
+        $products = Product::where('product_num', '>', '0')->get();
         return view('shop.home')->with('products', $products);
     }
 

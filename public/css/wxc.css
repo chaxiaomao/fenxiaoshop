@@ -15,8 +15,10 @@
     -moz-osx-font-smoothing: grayscale;
 }
 /*公共样式*/
-body{padding: 0px; margin: 0px; padding-bottom: 30px;}
+body{margin: 0px; padding:0 0 30px 0;}
 a:link{text-decoration: none;}
+li{list-style: none;}
+.mhead {font-weight:bold;letter-spacing:8px;height: 40px;background-color: rgb(244,244,244);color: #e50112;line-height: 40px;text-align: center;}
 #kefu{bottom: 60px;right: 10px;position: absolute;position: fixed;padding-right: 20px;max-width: 70px;}
 .mui-bar-tab .mui-tab-item.mui-active{color:#e50112;}
 .wxc_toptips{display: none; position: absolute; bottom: 50px; text-align: center; width: 100%;}

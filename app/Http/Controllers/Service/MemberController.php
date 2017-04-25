@@ -50,15 +50,15 @@ class MemberController extends Controller
                 $m3_result->message = '手机验证码为6位';
                 return $m3_result->toJson();
             }
-            $tempPhone = TempPhone::where('phone', $phone)->first();
-            if ($tempPhone->code == $phone_code) {
+            $tempPhone = TempPhone::where('tmp_phone', $phone)->first();
+            if ($tempPhone->tmp_code == $phone_code) {
                 if (time() > strtotime($tempPhone->deadline)) {
                     $m3_result->status = 7;
                     $m3_result->message = '手机验证码不正确';
                     return $m3_result->toJson();
                 }
                 $user = $req->session()->get('wechat_user');
-                Member::where('openid', $user['id'])->update(['phone' => $phone, 'password' => md5('wxc' . $password)]);
+                Member::where('openid', $user['id'])->update(['user_phone' => $phone, 'password' => md5('wxc' . $password)]);
                 $m3_result->status = 0;
                 $m3_result->message = '注册成功';
                 return $m3_result->toJson();

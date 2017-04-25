@@ -11,9 +11,7 @@
     <link rel="stylesheet" type="text/css" href="/css/wxc.css">
     <link rel="stylesheet" href="/css/iconfont.css">
 </head>
-<style>
-
-</style>
+@yield('m-style')
 <body>
     <!-- tooltips -->
     <div class="wxc_toptips"><span></span></div>
@@ -22,7 +20,7 @@
     </div>
     <nav class="mui-bar mui-bar-tab">
         <a class="mui-tab-item mui-active" id="home" href="#">
-            <span style="position:relative;top:2px;" class="icon iconfont icon-qrcode-copy-copy" aria-hidden="true"></span><br>
+            <span id="wxc_icon" style="position:relative;top:2px;" class="icon iconfont icon-qrcode-copy-copy" aria-hidden="true"></span><br>
             <span style="font-size:10px;" class="mui-tab-label">我的二维码</span>
         </a>
         <a class="mui-tab-item" id="cart" href="#">

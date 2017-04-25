@@ -472,3 +472,51 @@ request body = <TemplateSMS>
                   </TemplateSMS>
 request url = https://fenxiaoshop.tunnel.2badata.com:8883/2013-12-26/Accounts/8a216da85b602cda015b8b501577131d/SMS/TemplateSMS?sig=EA54D0AFB3B31F160081A9861EC900FF
 response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?><Response><statusCode>172001</statusCode><statusMsg>网络错误</statusMsg></Response>
+request body = <TemplateSMS>
+                    <to>15622965560</to>
+                    <appId>8a216da85b602cda015b8b5016f61323</appId>
+                    <templateId>1</templateId>
+                    <datas><data>609968</data><data>60</data></datas>
+                  </TemplateSMS>
+request url = https://fenxiaoshop.tunnel.2badata.com:8883/2013-12-26/Accounts/8a216da85b602cda015b8b501577131d/SMS/TemplateSMS?sig=B7490ACDDD64FD5AA024DB2AB284A9B6
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?><Response><statusCode>172001</statusCode><statusMsg>网络错误</statusMsg></Response>
+request body = <TemplateSMS>
+                    <to>15622965560</to>
+                    <appId>8a216da85b602cda015b8b5016f61323</appId>
+                    <templateId>1</templateId>
+                    <datas><data>566000</data><data>60</data></datas>
+                  </TemplateSMS>
+request url = https://fenxiaoshop.tunnel.2badata.com:8883/2013-12-26/Accounts/8a216da85b602cda015b8b501577131d/SMS/TemplateSMS?sig=44A64CCB37DBEC93A7D1B930D04ACFBA
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?><Response><statusCode>172001</statusCode><statusMsg>网络错误</statusMsg></Response>
+request body = <TemplateSMS>
+                    <to>15622965560</to>
+                    <appId>8a216da85b602cda015b8b5016f61323</appId>
+                    <templateId>1</templateId>
+                    <datas><data>099189</data><data>60</data></datas>
+                  </TemplateSMS>
+request url = https://fenxiaoshop.tunnel.2badata.com:8883/2013-12-26/Accounts/8a216da85b602cda015b8b501577131d/SMS/TemplateSMS?sig=77E90439751C1847D78B41D266DB5037
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?><Response><statusCode>172001</statusCode><statusMsg>网络错误</statusMsg></Response>
+request body = <TemplateSMS>
+                    <to>15622965560</to>
+                    <appId>8a216da85b602cda015b8b5016f61323</appId>
+                    <templateId>1</templateId>
+                    <datas><data>225207</data><data>60</data></datas>
+                  </TemplateSMS>
+request url = https://fenxiaoshop.tunnel.2badata.com:8883/2013-12-26/Accounts/8a216da85b602cda015b8b501577131d/SMS/TemplateSMS?sig=30F149A81EE01ED21B7A25B81FD69D96
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?><Response><statusCode>172001</statusCode><statusMsg>网络错误</statusMsg></Response>
+request body = <TemplateSMS>
+                    <to>15622965560</to>
+                    <appId>8a216da85b602cda015b8b5016f61323</appId>
+                    <templateId>1</templateId>
+                    <datas><data>712297</data><data>60</data></datas>
+                  </TemplateSMS>
+request url = https://fenxiaoshop.tunnel.2badata.com:8883/2013-12-26/Accounts/8a216da85b602cda015b8b501577131d/SMS/TemplateSMS?sig=605AAEF4D526420337DC3F9A508C77E2
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?><Response><statusCode>172001</statusCode><statusMsg>网络错误</statusMsg></Response>
+request body = <TemplateSMS>
+                    <to>15622965560</to>
+                    <appId>8a216da85b602cda015b8b5016f61323</appId>
+                    <templateId>1</templateId>
+                    <datas><data>973429</data><data>60</data></datas>
+                  </TemplateSMS>
+request url = https://fenxiaoshop.tunnel.2badata.com:8883/2013-12-26/Accounts/8a216da85b602cda015b8b501577131d/SMS/TemplateSMS?sig=0C1F41A4FFD8C3F40D78FFE09C7EA10B
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?><Response><statusCode>172001</statusCode><statusMsg>网络错误</statusMsg></Response>

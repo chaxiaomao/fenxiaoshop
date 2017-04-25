@@ -54,12 +54,12 @@ Class ValidateController extends Controller
 
 //        测试使用
 //        判断是否有发送过
-        $tempPhone = TempPhone::where('phone', $phone)->first();
+        $tempPhone = TempPhone::where('tmp_phone', $phone)->first();
         if($tempPhone == null) {
             $tempPhone = new TempPhone;
         }
-        $tempPhone->phone = $phone;
-        $tempPhone->code = $code;
+        $tempPhone->tmp_phone = $phone;
+        $tempPhone->tmp_code = $code;
         $tempPhone->deadline = date('Y-m-d H-i-s', time() + 8*60*60);
         $tempPhone->save();
         $m3_result->status = 0;
