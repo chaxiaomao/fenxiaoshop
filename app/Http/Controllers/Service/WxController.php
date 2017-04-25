@@ -93,12 +93,12 @@ class WxController extends Controller
             $this->qr($member->uid);
             //在判断，是否扫描的场景二维码
             if ($message->EventKey) {
-                $puid = substr($message->EventKey, 8);
-                $row = Member::find($puid);
+                $user = $member->where('uid', substr($message->EventKey, 8))->first();
+                $row = $user->toArray();
                 //分配代理关系
-                $user->p1 = $row['uid'];
-                $user->p2 = $row['p1'];
-                $user->p3 = $row['p2'];
+                $member->p1 = $row['uid'];
+                $member->p2 = $row['p1'];
+                $member->p3 = $row['p2'];
             }
         }
         $member->save();
@@ -108,25 +108,6 @@ class WxController extends Controller
             . '感谢您对微小茶事业的关注和支持!' . "\n"
             . '今天是：' . date("Y-m-d") . ',祝你生活愉快~';
         return $msg;
-    }
-
-    protected function quguan($message)
-    {
-        $openid = $message->FromUserName;
-        $member = Member::where('openid', $openid)->first();
-        if ($member) {
-            $member->state = 0;
-            $member->save();
-        }
-    }
-
-    public function mkd()
-    {
-        $path = date('/Y/md');
-        if (!is_dir(public_path() . $path)) {
-            mkdir(public_path() . $path, 0777, true);
-        }
-        return $path;
     }
 
     public function qr($uid)
@@ -146,5 +127,24 @@ class WxController extends Controller
         $qr = public_path() . $this->mkd() . '/' . 'qr_' . $uid . '.jpg';
         file_put_contents($qr, $content); // 写入文件
 
+    }
+
+    public function mkd()
+    {
+        $path = date('/Y/md');
+        if (!is_dir(public_path() . $path)) {
+            mkdir(public_path() . $path, 0777, true);
+        }
+        return $path;
+    }
+
+    protected function quguan($message)
+    {
+        $openid = $message->FromUserName;
+        $member = Member::where('openid', $openid)->first();
+        if ($member) {
+            $member->state = 0;
+            $member->save();
+        }
     }
 }

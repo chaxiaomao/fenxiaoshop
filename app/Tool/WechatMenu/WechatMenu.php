@@ -14,7 +14,7 @@ class WechatMenu
         {
             "type": "view", 
             "name": "微小茶", 
-            "url": "http://www.wxcmob.com/shop"
+            "url": "http://fenxiaoshop.tunnel.2bdata.com/home"
         }, 
         {
             "name": "代言人", 
@@ -63,13 +63,6 @@ class WechatMenu
         }
     ]
 }';
-    private function getToken()
-    {
-        $this->url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='.$this->appid.'&secret='.$this->appsecret;
-        $output = $this->https_request($this->url);
-        $jsoninfo = json_decode($output,true);
-        $this->access_token = $jsoninfo["access_token"];
-    }
 
     public function createMenu()
     {
@@ -91,6 +84,14 @@ class WechatMenu
         }
 
         return $m3_result->toJson();
+    }
+
+    private function getToken()
+    {
+        $this->url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='.$this->appid.'&secret='.$this->appsecret;
+        $output = $this->https_request($this->url);
+        $jsoninfo = json_decode($output,true);
+        $this->access_token = $jsoninfo["access_token"];
     }
 
     protected function https_request($url , $data = null)

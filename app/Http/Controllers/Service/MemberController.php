@@ -26,6 +26,7 @@ class MemberController extends Controller
 //        $phone_code = $req->phone_code;
 
         $m3_result = new M3Result;
+        $is_exit = Member::find('$phone');
 
         if ($password == '' || strlen($password) < 6) {
             $m3_result->status = 2;
