@@ -4,8 +4,6 @@
 
 @section('m-style')
     <style>
-        .mstep {border-bottom: 1px solid #fff;height:38px;}
-        .mstep img{width:100%;height:36px;}
         .mother{height: auto;padding: 20px;}
         .father{padding-left:20px;}
         .sister{height: 100px; background-color: #fff;border-radius:10px;margin:0 auto;padding:5px;margin-bottom: 20px;position:relative;}
@@ -50,14 +48,14 @@
                     <div class="s_right">
                         <!-- <p>微小茶古树儒香红茶(20包/箱)</p> -->
                         <p id="goods_name">{{$product['name']}}</p>
-                        <p>￥<input id="price_{{$product['id']}}" style="color:#e50112;border:none" value="{{$product['price']}}"></p>
+                        <p>￥<input id="price_{{$product['id']}}" class="wxc_red" value="{{$product['price']}}" readonly></p>
                     </div>
                     <!-- <div class="chacha"></div> -->
                     <button id="chacha_{{$product['id']}}" type="button" class="chacha" onclick="clearItem(this)">×</button>
                     <div class="bother">
                         <div id="{{$product['id']}}" class="mui-numbox">
                             <button class="mui-btn mui-numbox-btn-minus" type="button" onclick="decItem(this)">-</button>
-                            <input id="inp_{{$product['id']}}" class="mui-numbox-input" type="number" value="{{$product['quantity']}}" />
+                            <input id="inp_{{$product['id']}}" class="mui-numbox-input" type="number" value="{{$product['quantity']}}" readonly/>
                             <button class="mui-btn mui-numbox-btn-plus" type="button" onclick="incItem(this)">+</button>
                         </div>
                     </div>
@@ -65,10 +63,10 @@
             @endforeach
         </div>
         <div style="padding-bottom:60px;">
-            <p class="sum">商品总额:￥<span id="sum" style="color:#e50112;border:none;background:none;">{{$total}}</span></p>
+            <p class="sum">商品总额:￥<span id="sum" class="wxc_red">{{$total}}</span></p>
             <div class="btn">
                 <a href="{{url('/home')}}"><button type="button" class="lbtn mui-btn mui-btn-danger">继续逛逛</button></a>
-                <button type="button" class="rbtn mui-btn mui-btn-danger">&nbsp;去结算&nbsp;</button>
+                <a href="{{url('/order')}}"><button type="button" class="rbtn mui-btn mui-btn-danger">&nbsp;去结算&nbsp;</button></a>
             </div>
         </div>
     </div>

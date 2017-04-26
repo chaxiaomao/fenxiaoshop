@@ -1,6 +1,6 @@
-@extends('shop.shopbase');
+@extends('shop.shopbase')
 
-@section('title','购物篮');
+@section('title','购物篮')
 
 @section('m-style')
     <style type="text/css">

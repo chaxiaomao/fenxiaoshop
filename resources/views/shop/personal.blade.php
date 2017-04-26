@@ -5,12 +5,13 @@
 @section('m-style')
     <style>
         .mui-content,.mui-grid-view.mui-grid-9{background-color:#fff !important;}
+        .mui-content > .mui-table-view:first-child{margin-top: 0px;}
         .mui-bar-tab .mui-tab-item.mui-active{color:#e50112;}
         .mui-navigate-right:after, .mui-push-right:after{content: none !important}
         .mui-navigate-right img{float: left;width:72px;height: 72px;border-radius: 50%;}
         .mui-navigate-right .xinxi{float: left;height:72px;padding-left: 10px;line-height: 25px;}
         .jiantou{float: right;height: 72px;line-height: 72px;}
-        .mui-grid-view.mui-grid-9 .mui-table-view-cell{line-height: 30px;}
+        .mui-grid-view.mui-grid-9 .mui-table-view-cell{padding: 0 15px; line-height: 30px;}
         .more{margin-top:10px;}
         .more span {display: inline-block;color: gray;float: right;}
         .mui-table-view-cell > a:not(.mui-btn){color:gray;}
@@ -44,9 +45,10 @@
     <div class="mui-content">
         <!--触发字符：mgrid-->
         <ul class="mui-table-view mui-grid-view mui-grid-9">
-            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" style="position: relative;bottom: 2px;">
+            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
                 <a href="#">
-                    <span style="font-size:18px;color:#e50112;">0<span style="font-size:12px;">元</span></span>
+                    {{--<span style="color:#e50112;">0<span>元</span></span>--}}
+                    <span class="icon iconfont wxc_red">0元</span>
                     <div class="mspan mui-media-body">我的业绩</div>
                 </a>
             </li>
@@ -115,7 +117,7 @@
             <div class="mui-col-sm-11 mui-col-xs-12">
                 <li class="mui-table-view-cell">
                     <a>
-                        我的消费额度 <span style="color:#e50112">0</span>
+                        我的消费额度 <span class="wxc_red">0</span>
                     </a>
                 </li>
             </div>
