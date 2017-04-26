@@ -47,8 +47,8 @@
     <div class="di">
         <div class="container-fluid">
             <div class="row">
-                <a class="col-md-6" href="{{url('/service/buy',$gid)}}">加入购物车</a>
-                <a class="col-md-6" href="{{url('/service/buy',$gid)}}">立即购买</a>
+                <a class="col-md-6" href="{{url('/buy',$gid)}}">加入购物车</a>
+                <a class="col-md-6" href="{{url('/buy',$gid)}}">立即购买</a>
             </div>
         </div>
     </div>

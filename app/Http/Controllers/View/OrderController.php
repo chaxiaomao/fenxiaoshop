@@ -17,9 +17,8 @@ class OrderController extends Controller
         //找出所有地址
         $address = Address::where('openid', $openid['id'])->where('invalid', 0)->get();
         $default_addres = Address::where('openid', $openid['id'])->where('invalid', 0)->where('default', 1)->first();
-        if($default_addres == null) {
-            $dz = 0;
-        }
+        $default = $default_addres;
+        dd($default);
         return view('shop.order_commit')->with(['products' => $products, 'total' => $total, 'address' => $address, 'default_addres' => $default_addres->toArray()]);
     }
 }
