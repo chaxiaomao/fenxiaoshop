@@ -190,7 +190,7 @@
                     setTimeout(function () {
                         $(".wxc_toptips").hide();
                     }, 2000);
-                    location.href = "{{url('/personal')}}";
+                    location.reload("{{ url('/personal') }}");
                 },
                 error: function (xhr, status, error) {
                     console.log(xhr);
