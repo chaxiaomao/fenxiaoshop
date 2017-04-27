@@ -1,11 +1,16 @@
 @extends('shop.master')
 
 @include('component.loading')
+
 @section('title','登陆')
+
+@section('m-style')
 <style>
     p{text-align: center;margin-top:20px;}
     .weui-btn_primary{margin-top:40px;width:80%;}
 </style>
+@endsection
+
 @section('content')
     <div class="weui-cells__title">微小茶 - 注册</div>
     <div class="weui-cells weui-cells_form">
@@ -24,7 +29,6 @@
     </div>
     <a href="javascript:;" class="weui-btn weui-btn_primary">登陆</a>
     <p><a href="{{url('register')}}">没有账号？立即注册</a></p>
-
 @endsection
 
 @section('m-js')

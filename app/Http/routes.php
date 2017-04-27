@@ -34,10 +34,15 @@ Route::group(['perfix' => 'service'], function () {
     Route::get('/service/decrease_item', 'Service\DarryCartController@decreaseItem');
     Route::post('/service/save_address', 'Service\AddressController@saveAddress');
     Route::get('/service/create_order', 'Service\CreateOrderController@createOrder');
+    Route::get('/service/revise', 'Service\PersonalController@revise');
 });
 
 Route::group(['middleware' => 'wechat.oauth'], function () {
     Route::get('/personal', 'View\PersonalController@personal');
     Route::get('/home', 'View\HomeController@home');
     Route::get('/order/{ordsn}', 'View\OrderController@order');
+});
+
+Route::group(['perfix' => 'personal'], function() {
+    Route::get('personal/revise', 'View\ReviseController@revise');
 });

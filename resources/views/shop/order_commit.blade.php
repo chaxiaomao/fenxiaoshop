@@ -93,7 +93,7 @@
                 </div>
             </div>
             {{--<button id="pay" class="pay" type="submit">立即支付</button>--}}
-            <button id="pay" class="pay" type="button" onclick="WXPayment()">立即支付</button>
+            <button id="pay" class="wxc_btn" type="button" onclick="WXPayment()">立即支付</button>
         </div>
     </div>
     <!-- //编辑收获地址层 -->
@@ -272,12 +272,15 @@
                 $("#o_receiver").val(receiver);
                 $("#o_dz").val(city + dz);
                 $("#o_tel").val(tel);
-            } else {
-                $("#b").hide();
-                $("#o_receiver").val("");
-                $("#o_dz").val("");
-                $("#o_tel").val("");
             }
+//            else {
+//                $("#b").hide();
+//                $("#o_receiver").val("");
+//                $("#o_dz").val("");
+//                $("#o_tel").val("");
+//            }
+            $("#" + "aitem_" + aid).html(receiver + "," + city + "," + dz + "," + tel);
+            $("#b").hide();
             $.ajax({
                 url: "{{url('service/save_address')}}",
                 type: "post",
@@ -288,12 +291,9 @@
                     $("#loadingToast").css("display", "block");
                 },
                 success: function (data) {
-                    console.log(data);
                     if (data) {
                         createAddressItem(data);
                         $("#" + 'aitem_' + data).html(receiver + "," + city + "," + dz + "," + tel);
-                    } else {
-                        $("#" + "aitem_" + aid).html(receiver + "," + city + "," + dz + "," + tel);
                     }
                 },
                 complete: function (XMLHttpRequest, Status) {

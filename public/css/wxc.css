@@ -273,7 +273,8 @@ li{list-style: none;}
     color: gray;
 }
 
-.pay {
+.wxc_btn {
+    font-family: "微软雅黑";
     width: 90%;
     margin: 0 auto;
     text-align: center;

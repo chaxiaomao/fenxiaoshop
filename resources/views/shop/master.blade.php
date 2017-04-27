@@ -21,5 +21,7 @@
         @yield('content')
     </div>
 </body>
+
 @yield('m-js')
+
 </html>

@@ -24,7 +24,7 @@ class AddressController extends Controller
                 'default' => $request->input('state',''),
                 'tel' => $request->input('tel','')
             ]);
-            exit;
+            exit();
         }
         //增加地址，返回aid
         $aid = Address::insertGetId([
