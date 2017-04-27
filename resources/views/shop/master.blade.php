@@ -15,7 +15,8 @@
 
 <body>
     <!-- tooltips -->
-    <div class="wxc_toptips"><span></span></div>
+    @include('component.toasting')
+    @include('component.loading')
     <div>
         @yield('content')
     </div>

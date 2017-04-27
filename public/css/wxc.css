@@ -22,7 +22,7 @@ li{list-style: none;}
 #kefu{bottom: 60px;right: 10px;position: absolute;position: fixed;padding-right: 20px;max-width: 70px;}
 .mui-bar-tab .mui-tab-item.mui-active{color:#e50112;}
 .ex_icon_font{font-size: 12px;}
-.wxc_toptips{display: none; position: absolute; bottom: 50px; text-align: center; width: 100%;}
+.wxc_toptips{display: none; position: absolute; bottom: 50px; text-align: center; width: 100%; z-index: 9999;}
 .wxc_toptips span {background: #444444; color: #ffffff; padding: 15px 15px; border-radius: 5px; opacity: 0.9;}
 .wxc_red{color: #e50112 !important; border: none;padding: 0px !important;}
 /*首页样式*/
@@ -159,6 +159,11 @@ li{list-style: none;}
 }
 
 #a {
+    z-index: 10;
+    position: absolute;
+}
+
+#a2 {
     z-index: 8;
     position: absolute;
 }
@@ -390,7 +395,7 @@ li{list-style: none;}
 }
 
 .pans {
-    width: 49%;
+    width: 48%;
     display: inline-block;
     height: 45px;
     line-height: 45px;

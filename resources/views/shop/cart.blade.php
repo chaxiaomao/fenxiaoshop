@@ -66,7 +66,8 @@
             <p class="sum">商品总额:￥<span id="sum" class="wxc_red">{{$total}}</span></p>
             <div class="btn">
                 <a href="{{url('/home')}}"><button type="button" class="lbtn mui-btn mui-btn-danger">继续逛逛</button></a>
-                <a href="{{url('/order')}}"><button type="button" class="rbtn mui-btn mui-btn-danger">&nbsp;去结算&nbsp;</button></a>
+                {{--<a href="{{url('/order')}}"><button type="button" class="rbtn mui-btn mui-btn-danger">&nbsp;去结算&nbsp;</button></a>--}}
+                <button type="button" class="rbtn mui-btn mui-btn-danger" onclick="toOrder()">&nbsp;去结算&nbsp;</button>
             </div>
         </div>
     </div>
@@ -159,6 +160,30 @@
             });
             //Neuen Wert setzen
             $("#"+'inp_'+elemID).val(newcount);
+        }
+
+        function toOrder() {
+            $.ajax({
+                type:"get",
+                url:"{{url('service/create_order')}}",
+                dataType: "json",
+                beforeSend: function () {
+                    $("#loadingToast").css("display", "block");
+                },
+                success:function (data) {
+                    var ordsn = "{{url('order')}}";
+//                    console.log(ordsn + data);
+                    location.href = ordsn + "/" + data;
+                },
+                complete: function (XMLHttpRequest, Status) {
+                    $("#loadingToast").css("display", "none");
+                },
+                error: function (xhr, status, error) {
+                    console.log(xhr);
+                    console.log(status);
+                    console.log(error);
+                }
+            })
         }
     </script>
 @endsection

@@ -15,27 +15,26 @@
     <div id="order">
         <div class="mhead">红茶只喝微小茶</div>
         <div class="mstep"><img src="/imgs/l2.png"></div>
-        <input id="oid" name="oid" type="hidden" value=""/>
+        <input id="oid" name="oid" type="hidden" value="{{$ordsn}}"/>
         <!-- 订单编辑层 -->
         <div class="warp">
             <div class="warp-0">
                 <div id="abc">
                     {{--//判断默认地址--}}
-                    @if($default_addres == null)
+                    @if($default)
                         <div id="a" class="a">
                             <div class="a-1"><img src="/imgs/location.png">
-                                <input id="o_receiver" name="o_receiver" value="" readonly/>
-                                <input id="o_dz" class="ex_inp" name="o_dz"
-                                       value="" readonly/>
-                                <input id="o_tel" name="o_tel" value="" readonly/>
+                                <input id="o_receiver" name="o_receiver" value="{!! $default->receiver !!}" readonly/>
+                                <input id="o_dz" class="ex_inp" name="o_dz" value="{!! $default->city !!},{!!$default->location !!}" readonly/>
+                                <input id="o_tel" name="o_tel" value="{!! $default->tel !!}" readonly/>
                             </div>
                         </div>
                     @else
-                        <div id="a" class="a">
+                        <div id="a2" class="a">
                             <div class="a-1"><img src="/imgs/location.png">
-                                <input id="o_receiver" name="o_receiver" value="{{$default_addres['address_name']}}" readonly/>
-                                <input id="o_dz" class="ex_inp" name="o_dz" value="{{$default_addres['address_city']}},{{$default_addres['address_location']}}" readonly/>
-                                <input id="o_tel" name="o_tel" value="{{$default_addres['address_tel']}}" readonly/>
+                                <input id="o_receiver" name="o_receiver" value="" readonly/>
+                                <input id="o_dz" class="ex_inp" name="o_dz" value="" readonly/>
+                                <input id="o_tel" name="o_tel" value="" readonly/>
                             </div>
                         </div>
                     @endif
@@ -56,8 +55,8 @@
                                 <ul id="aul">
                                     @foreach($address as $addres)
                                     <li class="c-2"><span id="aitem_{{$addres['aid']}}" class="myspan"
-                                    onClick="selectAddress(this)"> {{$addres['address_name']}}
-                                    ,{{$addres['address_city']}},{{$addres['address_location']}},{{$addres['address_tel']}}</span>
+                                    onClick="selectAddress(this)"> {{$addres['receiver']}}
+                                    ,{{$addres['city']}},{{$addres['location']}},{{$addres['tel']}}</span>
                                     <div id="edit_{{$addres['aid']}}" class="edit" onClick="editAddress(this)"><img
                                     src="/imgs/edit.png"></div>
                                     </li>
@@ -101,7 +100,6 @@
     <div id="address_mash">
         <div class="mhead"><span id="back" style="float:left;padding-left:10px;">返回</span></div>
         <input id="aid" type="hidden" value="">
-
         <div class="mk">
             <lable>收货人</lable>
             <input id="receiver" class="mi" type="" name="receiver" placeholder="请输入真实姓名" value="">
@@ -133,8 +131,8 @@
             是否默认为收货地址
         </div>
         <div class="baocun">
-            <div id="clean" class="adda" type="button">清空地址</div>
-            <button id="save" class="adda" type="button" onClick="addAddress()">保存地址</button>
+            <button id="clean" class="adda" type="button">清空地址</button>
+            <button id="save" class="adda" type="button" onClick="saveAddress()">保存地址</button>
         </div>
     </div>
 
@@ -182,5 +180,144 @@
             $("#order").show();
             $("#c").hide();
         });
+
+        function selectAddress(obj) {
+            $("#b").hide();
+            var content = $(obj).html();
+            //console.log(content);
+            var arr = new Array();
+            arr = content.split(',');
+            //console.log(arr);
+            $("#o_receiver").val(arr[0]);
+            $("#o_dz").val(arr[1] + "," + arr[2] + "," + arr[3] + "," + arr[4]);
+            $("#o_tel").val(arr[5]);
+            $("#c").hide();
+        }
+
+        function editAddress(obj) {
+            var eid = $(obj).attr("id");
+            var tid = eid.slice(5);
+            var content = $("#" + "aitem_" + tid).html();
+            var arr = new Array();
+            arr = content.split(',');
+//            console.log(arr);
+            $("#aid").val(tid);//要修改的地址aid
+            //console.log(tid);
+            $("#receiver").val(arr[0]);
+            $("#agphone").val(arr[5]);
+            $("#phone").val(arr[5]);
+            $("#city").html(arr[1] + "," + arr[2] + "," + arr[3]);
+            $("#dz").val(arr[4]);
+            $("#order").hide();
+        }
+
+        function saveAddress() {
+            var tel = $("#phone").val();
+            var receiver = $("#receiver").val();
+            var city = $("#city").text();
+            var dz = $("#dz").val();
+            var state = 1;
+            var aid = $("#aid").val();
+            if (receiver == "") {
+                $(".wxc_toptips").show();
+                $(".wxc_toptips span").html('名字不能为空');
+                setTimeout(function () {
+                    $(".wxc_toptips").hide();
+                }, 2000);
+                return false;
+            }
+            if (!(/^1(3|4|5|7|8)\d{9}$/.test(tel))) {
+                $(".wxc_toptips").show();
+                $(".wxc_toptips span").html('手机格式不正确');
+                setTimeout(function () {
+                    $(".wxc_toptips").hide();
+                }, 2000);
+                return false;
+            }
+            if (tel == "") {
+                $(".wxc_toptips").show();
+                $(".wxc_toptips span").html('手机号码不能为空');
+                setTimeout(function () {
+                    $(".wxc_toptips").hide();
+                }, 2000);
+                return false;
+            }
+            if (tel !== $("#agphone").val()) {
+                $(".wxc_toptips").show();
+                $(".wxc_toptips span").html('两次手机号码不一致');
+                setTimeout(function () {
+                    $(".wxc_toptips").hide();
+                }, 2000);
+                return false;
+            }
+            if (city == "") {
+                $(".wxc_toptips").show();
+                $(".wxc_toptips span").html('请填写详细的地址');
+                setTimeout(function () {
+                    $(".wxc_toptips").hide();
+                }, 2000);
+                return false;
+            }
+            if (dz == "") {
+                $(".wxc_toptips").show();
+                $(".wxc_toptips span").html('请填写详细的地址');
+                setTimeout(function () {
+                    $(".wxc_toptips").hide();
+                }, 2000);
+                return false;
+            }
+            if ($("#box").is(':checked')) {
+                state = 0;
+                $("#b").hide();
+                $("#o_receiver").val(receiver);
+                $("#o_dz").val(city + dz);
+                $("#o_tel").val(tel);
+            } else {
+                $("#b").hide();
+                $("#o_receiver").val("");
+                $("#o_dz").val("");
+                $("#o_tel").val("");
+            }
+            $.ajax({
+                url: "{{url('service/save_address')}}",
+                type: "post",
+                data: {tel: tel, rec: receiver, city: city, dz: dz, state: state, aid: aid, _token: "{{csrf_token()}}"},
+                dataType: "json",
+                time: 3000,
+                beforeSend: function () {
+                    $("#loadingToast").css("display", "block");
+                },
+                success: function (data) {
+                    console.log(data);
+                    if (data) {
+                        createAddressItem(data);
+                        $("#" + 'aitem_' + data).html(receiver + "," + city + "," + dz + "," + tel);
+                    } else {
+                        $("#" + "aitem_" + aid).html(receiver + "," + city + "," + dz + "," + tel);
+                    }
+                },
+                complete: function (XMLHttpRequest, Status) {
+                    $("#order").show();
+                    $("#c").hide();
+                    $("#loadingToast").css("display", "none");
+                },
+                error: function (xhr, status, error) {
+                    console.log(xhr);
+                    console.log(status);
+                    console.log(error);
+                }
+            });
+        }
+
+        function createAddressItem(data) {
+            var aitem = $('<li class="c-2"></li>');
+            var aspan = $('<span class="myspan" onClick="javascript:selectAddress(this)"></span>');
+            aspan.attr("id", 'aitem_' + data);
+            var aimg = $('<div class="edit" onclick="editAddress(this)"><img src="/imgs/edit.png"></div>');
+            aimg.attr("id", 'edit_' + data);
+            aspan.appendTo(aitem);
+            aimg.appendTo(aitem);
+            aitem.appendTo("#aul");
+        }
     </script>
 @endsection

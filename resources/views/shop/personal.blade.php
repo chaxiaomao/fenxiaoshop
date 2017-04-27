@@ -30,7 +30,7 @@
             <div class="mui-col-sm-11 mui-col-xs-12">
                 <li class="mui-table-view-cell">
                     <a class="mui-navigate-right" href="{{url('wxcshop/personal/revise')}}">
-                        <img src="{{$member->user_avatar}}">
+                        <img src="{{$member->avatar}}">
                         <div class="xinxi">
                             <p>会员号:{{$member->user_id}}</p>
                             <p>会员昵称:{{$member->user_name}}</p>

@@ -10,7 +10,7 @@ class DarryCartController extends Controller
     public function buy($gid)
     {
         $product = Product::where('product_id', $gid)->first();
-        Cart::add($gid, $product->product_name, $product->product_price, 1, array('product_preview' => $product->product_preview));
+        Cart::add($gid, $product->name, $product->price, 1, array('product_preview' => $product->preview));
         return redirect('/cart');
     }
 
@@ -23,7 +23,7 @@ class DarryCartController extends Controller
     public function increaseItem()
     {
         $product = Product::where('product_id', $_GET['gid'])->first();
-        Cart::add($_GET['gid'], $product->product_name, $product->product_price, 1, array('product_preview' => $product->product_preview));
+        Cart::add($_GET['gid'], $product->name, $product->price, 1, array('product_preview' => $product->preview));
         return Cart::getTotal();
     }
 

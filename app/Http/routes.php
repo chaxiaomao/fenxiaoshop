@@ -32,10 +32,12 @@ Route::group(['perfix' => 'service'], function () {
     Route::get('/service/delete_product', 'Service\DarryCartController@deleteProduct');
     Route::get('/service/increase_item', 'Service\DarryCartController@increaseItem');
     Route::get('/service/decrease_item', 'Service\DarryCartController@decreaseItem');
+    Route::post('/service/save_address', 'Service\AddressController@saveAddress');
+    Route::get('/service/create_order', 'Service\CreateOrderController@createOrder');
 });
 
 Route::group(['middleware' => 'wechat.oauth'], function () {
     Route::get('/personal', 'View\PersonalController@personal');
     Route::get('/home', 'View\HomeController@home');
-    Route::get('/order', 'View\OrderController@order');
+    Route::get('/order/{ordsn}', 'View\OrderController@order');
 });

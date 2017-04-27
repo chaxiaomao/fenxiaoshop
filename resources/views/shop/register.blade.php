@@ -13,7 +13,6 @@
         width: 80%;
     }
 </style>
-@include('component.loading')
 
 @section('content')
     <div class="weui-cells__title">微小茶 - 注册</div>

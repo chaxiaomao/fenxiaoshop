@@ -25,7 +25,7 @@
     </ul>
     <div class="shell">
         @foreach($products as $product)
-            <a href="{{url('/detail', $product->product_id)}}"><img src="{{$product->product_display}}"/></a>
+            <a href="{{url('/detail', $product->product_id)}}"><img src="{{$product->display}}"/></a>
         @endforeach
     </div>
 
