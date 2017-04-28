@@ -20,6 +20,7 @@
     .sli-2 button{position: absolute;bottom:0px;height: 45px;border-radius: 5px;background-color: #e50112;color: #fff;border:none;padding:10px;letter-spacing: 2px;font-size: 13.33px}
     button:nth-last-child(1){right: 100px;}
     button:nth-last-child(2){right: 5px;}
+    #have{z-index: 100;}
     #none{text-align: center;font-size: 20px;color:gray;z-index: 99;position: absolute;top:100px;height: 100%;width: 100%;background-color: rgb(229,229,229);display: none;}
 </style>
 @endsection
@@ -49,7 +50,7 @@
                                 @foreach($order->item as $pre)
                                     <li><img src="{{$pre->preview}}"></li>
                                 @endforeach
-                                <button id="delete_{{$order->oid}}" class="shanchu" onclick="deOrdsn(this)">立即删除</button>
+                                <button id="delete_{{$order->oid}}" class="shanchu" onclick="deleteOrder(this)">立即删除</button>
                                 <button>立即支付</button>
                             </ul>
                         </li>
@@ -64,43 +65,81 @@
     <div id="none">
         暂无数据!
     </div>
+    <!--BEGIN dialog1-->
+    <div class="js_dialog" id="iosDialog1" style="display: none;">
+        <div class="weui-mask"></div>
+        <div class="weui-dialog">
+            <div class="weui-dialog__hd"><strong class="weui-dialog__title">删除操作</strong></div>
+            <div class="weui-dialog__bd">确定要删除此订单</div>
+            <div class="weui-dialog__ft">
+                <div class="weui-dialog__btn weui-dialog__btn_default" onclick="hideDialog()">取消</div>
+                <div class="weui-dialog__btn weui-dialog__btn_primary" onclick="commitDelete(this)">确认</div>
+            </div>
+        </div>
+    </div>
+    <!--END dialog1-->
 @endsection
 
 @section('m-js')
     <script type="text/javascript">
-        $(function(){
+        $(function () {
             //绑定li
-            for(var i=1;i<=5;i++){
-                $("#li_"+i).bind("click",{index:i},clickHandler);
+            for (var i = 1; i <= 5; i++) {
+                $("#li_" + i).bind("click", {index: i}, clickHandler);
             }
-            function clickHandler(event){
+            function clickHandler(event) {
                 var i = event.data.index;
                 $(".active").removeClass("active");
-                $("#li_"+i).addClass("active");
+                $("#li_" + i).addClass("active");
             }
 
         });
 
-        function deOrdsn(obj) {
-            $(".shanchu").click(function(){
-                if(confirm("你确定要删除此订单?")){
-                    var de_ordsn;
-                    var elm = $(obj).attr("id");
-                    de_ordsn = $("#"+"ordsn_"+elm.slice(7)).html();
-                    $.ajax({
-                        url:"{{url('wxcshop/personal/deleteOrdsn')}}",
-                        type:"get",
-                        data:{ordsn:de_ordsn},
-                        time:3000,
-                        success: function(){
-                            $("#"+"oitem_"+elm.slice(7)).hide();
-                        },
-                        error: function(){
-                            alert("出错了,请稍后再试");
-                        }
-                    });
-                }else{
-                    return;
+        function deleteOrder(obj) {
+            var elm = $(obj).attr("id");
+            var oid = elm.slice(7);
+            $(".weui-dialog__btn_primary").attr("id", oid);
+            $("#iosDialog1").css("display", "block");
+        }
+
+        function hideDialog() {
+            $("#iosDialog1").css("display", "none");
+        }
+
+        function commitDelete(obj) {
+            hideDialog();
+            var oid = $(obj).attr("id");
+            $.ajax({
+                url: "{{url('/service/delete_order')}}",
+                type: "get",
+                data: {oid: oid},
+                time: 3000,
+                dateType: "json",
+                beforeSend: function () {
+                    $("#loadingToast").css("display", "block");
+                },
+                success: function (data) {
+//                    console.log(data);
+                    if (data == null) {
+                        $(".wxc_toptips").show();
+                        $(".wxc_toptips span").html('服务端错误');
+                        setTimeout(function () {
+                            $(".wxc_toptips").hide();
+                        }, 2000);
+                        return;
+                    }
+                    $(".wxc_toptips").show();
+                    $(".wxc_toptips span").html("删除成功");
+                    setTimeout(function () {
+                        $(".wxc_toptips").hide();
+                    }, 2000);
+                },
+                complete: function (XMLHttpRequest, Status) {
+                    $("#" + "oitem_" + oid).hide();
+                    $("#loadingToast").css("display", "none");
+                },
+                error: function () {
+                    alert("出错了,请稍后再试");
                 }
             });
         }

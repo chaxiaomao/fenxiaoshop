@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Entity\Orders;
 use App\Entity\OrderItem;
 use Cart;
-use Log;
+use App\Models\M3Result;
 
 class OrderController extends Controller
 {
@@ -51,5 +51,14 @@ class OrderController extends Controller
             $item->save();
         }
 
+    }
+
+    public function deleteOrder(Request $request)
+    {
+        $dorder = Orders::where('oid', $request->input('oid', ''))->update(['invalid' => 1]);
+        $m3_result = new M3Result();
+        $m3_result->status = 0;
+        $m3_result->message = "删除成功";
+        return $m3_result->toJson();
     }
 }

@@ -35,6 +35,7 @@ Route::group(['perfix' => 'service'], function () {
     Route::post('/service/save_address', 'Service\AddressController@saveAddress');
     Route::get('/service/create_order', 'Service\OrderController@createOrder');
     Route::get('/service/storage_order', 'Service\OrderController@storageOrder');
+    Route::get('/service/delete_order', 'Service\OrderController@deleteOrder');
     Route::get('/service/revise', 'Service\PersonalController@revise');
 });
 
