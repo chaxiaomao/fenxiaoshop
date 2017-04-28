@@ -5,16 +5,18 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Entity\Member;
 use App\Entity\Orders;
+use App\Entity\Address;
 
 class PersonalController extends Controller
 {
     public function personal()
     {
         // 已经登录过
-        $user = session()->get('wechat_user');
-        Member::where('openid', $user['id'])->update(['avatar' => $user['avatar']]);
-        $member = Member::where('openid', $user['id'])->first();
-        $p1 = Member::where('uid', $member->p1)->value('user_name');
+        $wechat_user = session()->get('wechat_user');
+        //更新用户头像
+        Member::where('openid', $wechat_user['id'])->update(['avatar' => $wechat_user['avatar']]);
+        $member = Member::where('openid', $wechat_user['id'])->first();
+        $p1 = Member::where('uid', $member->p1)->value('user_name'); //找出上一级推荐人
         if ($member->phone == null || $member->phone == "") {
             return view('shop.first');
         }
@@ -23,17 +25,28 @@ class PersonalController extends Controller
 
     public function revise(Request $request)
     {
-        $info = $request->session()->get('wechat_user');
-        $user = Member::where('openid', $info['id'])->first();
+        $wechat_user = session()->get('wechat_user');
+        $user = Member::where('openid', $wechat_user['id'])->first();
         return view('shop.revise')->with('user', $user);
     }
 
     public function orders(Request $request)
     {
-        $openid = $request->session()->get('wechat_user');
-        $orders = Orders::where('openid', $openid['id'])->where('invalid', 0)->get();
+        $wechat_user = session()->get('wechat_user');
+        $orders = Orders::where('openid', $wechat_user['id'])->where('invalid', 0)->get();
 //        dd($orders->item)
         return view('shop.orders')->with('orders', $orders);
 
+    }
+
+    public function address(Request $request)
+    {
+        $user = session()->get('wechat_user');
+        //找出所有地址
+        $address = Address::where('openid', $user['id'])->where('invalid', 0)->where('default', 1)->get();
+        //默认地址
+        $default = Address::where('openid', $user['id'])->where('invalid', 0)->where('default', 0)->first();
+
+        return view('shop.address')->with(['address' => $address, 'default' => $default]);
     }
 }

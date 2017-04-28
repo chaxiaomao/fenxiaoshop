@@ -10,8 +10,8 @@ class PersonalController extends Controller
 {
     public function revise(Request $request)
     {
-        $user = $request->session()->get('wechat_user');
-        Member::where('openid', $user['id'])->update(['user_name' => $request->input('name', '')]);
+        $wechat_user = $request->session()->get('wechat_user');
+        Member::where('openid', $wechat_user['id'])->update(['user_name' => $request->input('name', '')]);
         $m3_result = new M3Result;
         $m3_result->status = 0;
         $m3_result->message = "修改成功";

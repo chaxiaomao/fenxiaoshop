@@ -13,12 +13,12 @@ class OrderController extends Controller
     public function createOrder(Request $request)
     {
         $total = Cart::getTotal();
-        $openid = $request->session()->get('wechat_user');
+        $wechat_user = $request->session()->get('wechat_user');
 //        生成订单
         $ordsn = "E" . date('Ymd') . mt_rand(100000, 999999);
         $oid = Orders::insertGetId([
             'money' => $total,
-            'openid' => $openid['id'],
+            'openid' => $wechat_user['id'],
             'ordsn' => $ordsn,
             'invalid' => 1,
             'create_at' => date("Y-m-d H:i:s", time() + 8 * 60 * 60),

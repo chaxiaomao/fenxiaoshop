@@ -28,7 +28,6 @@
             <a href="{{url('/detail', $product->product_id)}}"><img src="{{$product->display}}"/></a>
         @endforeach
     </div>
-
 @endsection
 
 @section('m-js')

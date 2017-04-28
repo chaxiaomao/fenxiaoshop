@@ -31,9 +31,12 @@
                 <li class="mui-table-view-cell">
                     <a class="mui-navigate-right" href="{{url('/personal/revise')}}">
                         <img src="{{$member->avatar}}">
+
                         <div class="xinxi">
                             <p>会员号:{{$member->user_id}}</p>
+
                             <p>会员昵称:{{$member->user_name}}</p>
+
                             <p>推荐人:{{$p1}}</p>
                         </div>
                         <div class="jiantou"><span class="icon iconfont icon-chanpinxiangqingqianwang"></span></div>
@@ -49,36 +52,42 @@
                 <a href="#">
                     {{--<span style="color:#e50112;">0<span>元</span></span>--}}
                     <span class="icon iconfont wxc_red">0元</span>
+
                     <div class="mspan mui-media-body">我的业绩</div>
                 </a>
             </li>
             <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
                 <a href="{{url('wxcshop/personal/team',0)}}">
                     <span class="icon iconfont icon-hexintuandui"></span>
+
                     <div class="mspan mui-media-body">我的团队</div>
                 </a>
             </li>
             <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
                 <a href="#">
                     <span class="icon iconfont icon-icon"></span>
+
                     <div class="mui-media-body">现金管理</div>
                 </a>
             </li>
             <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
                 <a href="#">
                     <span class="icon iconfont icon-qrcode-copy-copy"></span>
+
                     <div class="mui-media-body">我的二维码</div>
                 </a>
             </li>
             <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
                 <a href="{{url("/personal/orders")}}">
                     <span class="icon iconfont icon-wodedingdan"></span>
+
                     <div class="mui-media-body">我的订单</div>
                 </a>
             </li>
             <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
                 <a href="#">
                     <span class="icon iconfont icon-tuiguangjilu-copy"></span>
+
                     <div class="mui-media-body">产品推广</div>
                 </a>
             </li>
@@ -104,7 +113,7 @@
         <div class="mui-row">
             <div class="mui-col-sm-11 mui-col-xs-12">
                 <li class="mui-table-view-cell">
-                    <a href="{{url('wxcshop/personal/address')}}">
+                    <a href="{{url('/personal/address')}}">
                         收货地址
                         <span class="icon iconfont icon-chanpinxiangqingqianwang"></span>
                     </a>
@@ -130,11 +139,10 @@
         $("#home").removeClass("mui-active");
         $("#cart").removeClass("mui-active");
         $("#personal").addClass("mui-active");
-        $("#personal").attr("href","#");
-        $("#cart").attr("href","{{url('cart')}}");
-        $("#home").attr("href","{{url('/home')}}");
+        $("#personal").attr("href", "#");
+        $("#cart").attr("href", "{{url('cart')}}");
+        $("#home").attr("href", "{{url('/home')}}");
         $("#wxc_icon").removeClass("icon iconfont icon-qrcode-copy-copy");
         $("#wxc_icon").addClass("icon iconfont icon-shouye1");
-
     </script>
 @endsection

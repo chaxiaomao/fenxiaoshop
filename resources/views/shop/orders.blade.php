@@ -27,7 +27,7 @@
 
 @section('content')
     <div>
-        <ul id="nul" >
+        <ul id="nul">
             <li id="li_1" class="active">全部</li>
             <li id="li_2">待付款</li>
             <li id="li_3">待发货</li>
@@ -50,7 +50,8 @@
                                 @foreach($order->item as $pre)
                                     <li><img src="{{$pre->preview}}"></li>
                                 @endforeach
-                                <button id="delete_{{$order->oid}}" class="shanchu" onclick="deleteOrder(this)">立即删除</button>
+                                <button id="delete_{{$order->oid}}" class="shanchu" onclick="deleteOrder(this)">立即删除
+                                </button>
                                 <button>立即支付</button>
                             </ul>
                         </li>
@@ -69,8 +70,8 @@
     <div class="js_dialog" id="iosDialog1" style="display: none;">
         <div class="weui-mask"></div>
         <div class="weui-dialog">
-            <div class="weui-dialog__hd"><strong class="weui-dialog__title">删除操作</strong></div>
-            <div class="weui-dialog__bd">确定要删除此订单</div>
+            <div class="weui-dialog__hd"><strong class="weui-dialog__title">提示</strong></div>
+            <div class="weui-dialog__bd">确定要删除此订单?</div>
             <div class="weui-dialog__ft">
                 <div class="weui-dialog__btn weui-dialog__btn_default" onclick="hideDialog()">取消</div>
                 <div class="weui-dialog__btn weui-dialog__btn_primary" onclick="commitDelete(this)">确认</div>

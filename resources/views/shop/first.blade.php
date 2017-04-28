@@ -12,9 +12,8 @@
         $("#home").removeClass("mui-active");
         $("#cart").removeClass("mui-active");
         $("#personal").addClass("mui-active");
-        $("#personal").attr("href","#");
-        $("#cart").attr("href","{{url('cart')}}");
-        $("#home").attr("href","{{url('/home')}}");
-
+        $("#personal").attr("href", "#");
+        $("#cart").attr("href", "{{url('cart')}}");
+        $("#home").attr("href", "{{url('/home')}}");
     </script>
 @endsection

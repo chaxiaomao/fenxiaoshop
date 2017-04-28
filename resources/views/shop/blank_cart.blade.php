@@ -17,9 +17,9 @@
         $("#home").removeClass("mui-active");
         $("#personal").removeClass("mui-active");
         $("#cart").addClass("mui-active");
-        $("#cart").attr("href","#");
-        $("#personal").attr("href","{{url('personal')}}");
-        $("#home").attr("href","{{url('/home')}}");
+        $("#cart").attr("href", "#");
+        $("#personal").attr("href", "{{url('personal')}}");
+        $("#home").attr("href", "{{url('/home')}}");
         $("#wxc_icon").removeClass("icon iconfont icon-qrcode-copy-copy");
         $("#wxc_icon").addClass("icon iconfont icon-shouye1");
     </script>

@@ -102,7 +102,7 @@
         <input id="aid" type="hidden" value="">
         <div class="mk">
             <lable>收货人</lable>
-            <input id="receiver" class="mi" type="" name="receiver" placeholder="请输入真实姓名" value="">
+            <input id="receiver" class="mi" type="text" name="receiver" placeholder="请输入真实姓名" value="">
         </div>
         <div class="mk">
             <lable>手机号码</lable>
@@ -140,9 +140,6 @@
 
 <script type="text/javascript" src="/js/CityArea.js"></script>
 @section('m-js')
-    {{--<script type="text/javascript">--}}
-        {{----}}
-    {{--</script>--}}
     <script type="text/javascript">
         var flag = 0;
         $("#abc").click(function () {
@@ -294,6 +291,7 @@
                     $("#loadingToast").css("display", "block");
                 },
                 success: function (data) {
+
                     if (data) {
                         createAddressItem(data);
                         $("#" + 'aitem_' + data).html(receiver + "," + city + "," + dz + "," + tel);

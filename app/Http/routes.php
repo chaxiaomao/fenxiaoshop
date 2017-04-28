@@ -17,7 +17,6 @@ Route::get('/', function () {
 Route::get('/detail/{gid}', 'View\CartController@detail');
 Route::get('/buy/{gid}', 'Service\DarryCartController@buy');
 Route::get('/cart', 'View\CartController@cart');
-
 Route::get('/login', 'View\MemberController@toLogin');
 Route::get('/register', 'View\MemberController@toRegister');
 
@@ -33,6 +32,7 @@ Route::group(['perfix' => 'service'], function () {
     Route::get('/service/increase_item', 'Service\DarryCartController@increaseItem');
     Route::get('/service/decrease_item', 'Service\DarryCartController@decreaseItem');
     Route::post('/service/save_address', 'Service\AddressController@saveAddress');
+    Route::get('/service/delete_address', 'Service\AddressController@deleteAddress');
     Route::get('/service/create_order', 'Service\OrderController@createOrder');
     Route::get('/service/storage_order', 'Service\OrderController@storageOrder');
     Route::get('/service/delete_order', 'Service\OrderController@deleteOrder');
@@ -46,6 +46,7 @@ Route::group(['middleware' => 'wechat.oauth'], function () {
 });
 
 Route::group(['perfix' => 'personal'], function() {
-    Route::get('personal/revise', 'View\PersonalController@revise');
-    Route::get('personal/orders', 'View\PersonalController@orders');
+    Route::get('/personal/revise', 'View\PersonalController@revise');
+    Route::get('/personal/orders', 'View\PersonalController@orders');
+    Route::get('/personal/address', 'View\PersonalController@address');
 });

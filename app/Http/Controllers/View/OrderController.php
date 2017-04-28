@@ -13,11 +13,11 @@ class OrderController extends Controller
         $products = Cart::getContent();
         $total = Cart::getTotal();
 //        dd(json_encode($products));
-        $openid = $request->session()->get('wechat_user');
+        $wechat_user = $request->session()->get('wechat_user');
         //找出所有地址
-        $address = Address::where('openid', $openid['id'])->where('invalid', 0)->get();
+        $address = Address::where('openid', $wechat_user['id'])->where('invalid', 0)->get();
         //默认地址
-        $default = Address::where('openid', $openid['id'])->where('invalid', 0)->where('default', 0)->first();
+        $default = Address::where('openid', $wechat_user['id'])->where('invalid', 0)->where('default', 0)->first();
 
         return view('shop.order_commit')->with([
             'products' => $products,

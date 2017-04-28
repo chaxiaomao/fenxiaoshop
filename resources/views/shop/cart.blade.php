@@ -48,14 +48,19 @@
                     <div class="s_right">
                         <!-- <p>微小茶古树儒香红茶(20包/箱)</p> -->
                         <p id="goods_name">{{$product['name']}}</p>
-                        <p>￥<input id="price_{{$product['id']}}" class="wxc_red" value="{{$product['price']}}" readonly></p>
+
+                        <p>￥<input id="price_{{$product['id']}}" class="wxc_red" value="{{$product['price']}}" readonly>
+                        </p>
                     </div>
                     <!-- <div class="chacha"></div> -->
-                    <button id="chacha_{{$product['id']}}" type="button" class="chacha" onclick="clearItem(this)">×</button>
+                    <button id="chacha_{{$product['id']}}" type="button" class="chacha" onclick="clearItem(this)">×
+                    </button>
                     <div class="bother">
                         <div id="{{$product['id']}}" class="mui-numbox">
-                            <button class="mui-btn mui-numbox-btn-minus" type="button" onclick="decItem(this)">-</button>
-                            <input id="inp_{{$product['id']}}" class="mui-numbox-input" type="number" value="{{$product['quantity']}}" readonly/>
+                            <button class="mui-btn mui-numbox-btn-minus" type="button" onclick="decItem(this)">-
+                            </button>
+                            <input id="inp_{{$product['id']}}" class="mui-numbox-input" type="number"
+                                   value="{{$product['quantity']}}" readonly/>
                             <button class="mui-btn mui-numbox-btn-plus" type="button" onclick="incItem(this)">+</button>
                         </div>
                     </div>
@@ -64,8 +69,11 @@
         </div>
         <div style="padding-bottom:60px;">
             <p class="sum">商品总额:￥<span id="sum" class="wxc_red">{{$total}}</span></p>
+
             <div class="btn">
-                <a href="{{url('/home')}}"><button type="button" class="lbtn mui-btn mui-btn-danger">继续逛逛</button></a>
+                <a href="{{url('/home')}}">
+                    <button type="button" class="lbtn mui-btn mui-btn-danger">继续逛逛</button>
+                </a>
                 {{--<a href="{{url('/order')}}"><button type="button" class="rbtn mui-btn mui-btn-danger">&nbsp;去结算&nbsp;</button></a>--}}
                 <button type="button" class="rbtn mui-btn mui-btn-danger" onclick="toOrder()">&nbsp;去结算&nbsp;</button>
             </div>
@@ -79,100 +87,97 @@
         $("#home").removeClass("mui-active");
         $("#personal").removeClass("mui-active");
         $("#cart").addClass("mui-active");
-        $("#cart").attr("href","#");
-        $("#personal").attr("href","{{url('personal')}}");
-        $("#home").attr("href","{{url('/home')}}");
+        $("#cart").attr("href", "#");
+        $("#personal").attr("href", "{{url('personal')}}");
+        $("#home").attr("href", "{{url('/home')}}");
         $("#wxc_icon").removeClass("icon iconfont icon-qrcode-copy-copy");
         $("#wxc_icon").addClass("icon iconfont icon-shouye1");
     </script>
     <script type="text/javascript">
-        function clearItem(obj)
-        {
+        function clearItem(obj) {
             var elemID = $(obj).attr("id");
             // var gval = $("#"+gid+'inp');
             var gid = elemID.slice(7);
             $.ajax({
-                type:'get',
-                url:"{{url('service/delete_product')}}",
-                data:{gid:gid},
-                success:function(data){
-                    $('#'+"item_"+gid).hide();
+                type: 'get',
+                url: "{{url('service/delete_product')}}",
+                data: {gid: gid},
+                success: function (data) {
+                    $('#' + "item_" + gid).hide();
                     //console.log(data);
-                    if(data == 0){
+                    if (data == 0) {
                         $("#you").hide();
                         $("#kong").show();
                     }
                     $("#sum").html(data);
                 },
-                error:function(xhr,state){
+                error: function (xhr, state) {
                     alert("出错了,请稍后试试");
                 }
             });
         }
 
-        function incItem(obj)
-        {
+        function incItem(obj) {
             var count = 1;
             var newcount = 0;
             //Wert holen + Rechnen
             var elemID = $(obj).parent().attr("id");
-            var countField = $("#"+'inp_'+elemID);
-            var count = $("#"+'inp_'+elemID).val();
+            var countField = $("#" + 'inp_' + elemID);
+            var count = $("#" + 'inp_' + elemID).val();
             var newcount = parseInt(count) + 1;
             $.ajax({
-                type:'get',
-                url:"{{url('service/increase_item')}}",
-                data:{gid:elemID},
-                success:function(data){
+                type: 'get',
+                url: "{{url('service/increase_item')}}",
+                data: {gid: elemID},
+                success: function (data) {
                     $("#sum").html(data);
                 },
-                error:function(){
+                error: function () {
 
                 }
             });
             //Neuen Wert setzen
-            $("#"+'inp_'+elemID).val(newcount);
+            $("#" + 'inp_' + elemID).val(newcount);
         }
 
-        function decItem(obj)
-        {
+        function decItem(obj) {
             var count = 1;
             var newcount = 0;
             //Wert holen + Rechnen
             var elemID = $(obj).parent().attr("id");
-            var countField = $("#"+'inp_'+elemID);
-            var count = $("#"+'inp_'+elemID).val();
+            var countField = $("#" + 'inp_' + elemID);
+            var count = $("#" + 'inp_' + elemID).val();
             var newcount = parseInt(count) - 1;
-            if(newcount < 1){
-                $("#"+'inp_'+elemID).val(1);
+            if (newcount < 1) {
+                $("#" + 'inp_' + elemID).val(1);
                 return false;
             }
             $.ajax({
-                type:'get',
-                url:"{{url('service/decrease_item')}}",
-                data:{gid:elemID},
-                success:function(data){
+                type: 'get',
+                url: "{{url('service/decrease_item')}}",
+                data: {gid: elemID},
+                success: function (data) {
                     $("#sum").html(data);
                 },
-                error:function(){
+                error: function () {
 
                 }
             });
             //Neuen Wert setzen
-            $("#"+'inp_'+elemID).val(newcount);
+            $("#" + 'inp_' + elemID).val(newcount);
         }
 
         function toOrder() {
             var url = "{{url('/order')}}";
 //            var ordsn;
             $.ajax({
-                type:"get",
-                url:"{{url('/service/create_order')}}",
+                type: "get",
+                url: "{{url('/service/create_order')}}",
                 dataType: "json",
                 beforeSend: function () {
                     $("#loadingToast").css("display", "block");
                 },
-                success:function (data) {
+                success: function (data) {
 //                    ordsn = data;
                 },
                 complete: function (XMLHttpRequest, Status) {
