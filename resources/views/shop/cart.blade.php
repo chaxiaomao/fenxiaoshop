@@ -163,20 +163,22 @@
         }
 
         function toOrder() {
+            var url = "{{url('/order')}}";
+//            var ordsn;
             $.ajax({
                 type:"get",
-                url:"{{url('service/create_order')}}",
+                url:"{{url('/service/create_order')}}",
                 dataType: "json",
                 beforeSend: function () {
                     $("#loadingToast").css("display", "block");
                 },
                 success:function (data) {
-                    var ordsn = "{{url('order')}}";
-//                    console.log(ordsn + data);
-                    location.href = ordsn + "/" + data;
+//                    ordsn = data;
                 },
                 complete: function (XMLHttpRequest, Status) {
+                    console.log(XMLHttpRequest.responseText);
                     $("#loadingToast").css("display", "none");
+                    location.href = url + "/" + XMLHttpRequest.responseText;
                 },
                 error: function (xhr, status, error) {
                     console.log(xhr);

@@ -29,7 +29,7 @@
         <div class="mui-row">
             <div class="mui-col-sm-11 mui-col-xs-12">
                 <li class="mui-table-view-cell">
-                    <a class="mui-navigate-right" href="{{url('personal/revise')}}">
+                    <a class="mui-navigate-right" href="{{url('/personal/revise')}}">
                         <img src="{{$member->avatar}}">
                         <div class="xinxi">
                             <p>会员号:{{$member->user_id}}</p>
@@ -71,7 +71,7 @@
                 </a>
             </li>
             <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-                <a href="{{url("wxcshop/personal/ordsns")}}">
+                <a href="{{url("/personal/orders")}}">
                     <span class="icon iconfont icon-wodedingdan"></span>
                     <div class="mui-media-body">我的订单</div>
                 </a>

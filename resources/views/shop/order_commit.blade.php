@@ -140,6 +140,9 @@
 
 <script type="text/javascript" src="/js/CityArea.js"></script>
 @section('m-js')
+    {{--<script type="text/javascript">--}}
+        {{----}}
+    {{--</script>--}}
     <script type="text/javascript">
         var flag = 0;
         $("#abc").click(function () {
@@ -318,6 +321,28 @@
             aspan.appendTo(aitem);
             aimg.appendTo(aitem);
             aitem.appendTo("#aul");
+        }
+
+        function WXPayment() {
+            $.ajax({
+                url: "{{url('/service/storage_order')}}",
+                type: "get",
+                data: {
+                    rec: $("#o_receiver").val(),
+                    dz: $("#o_dz").val(),
+                    tel: $("#o_tel").val(),
+                    oid: $("#oid").val(),
+                    {{--_token: "{{csrf_field()}}"--}}
+                },
+                time: 3000,
+                success: function () {
+
+                },
+                error: function () {
+                    alert("出错了,稍后再试!")
+                    return false;
+                }
+            });
         }
     </script>
 @endsection

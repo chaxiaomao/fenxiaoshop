@@ -1,12 +1,10 @@
 <?php
 namespace App\Http\Controllers\View;
 
-use App\Entity\Orders;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Cart;
 use App\Entity\Address;
-
 
 class OrderController extends Controller
 {
@@ -14,6 +12,7 @@ class OrderController extends Controller
     {
         $products = Cart::getContent();
         $total = Cart::getTotal();
+//        dd(json_encode($products));
         $openid = $request->session()->get('wechat_user');
         //找出所有地址
         $address = Address::where('openid', $openid['id'])->where('invalid', 0)->get();
@@ -28,4 +27,5 @@ class OrderController extends Controller
             'ordsn' => $ordsn
         ]);
     }
+
 }
