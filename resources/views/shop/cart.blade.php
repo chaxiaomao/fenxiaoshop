@@ -20,7 +20,7 @@
         .mui-numbox .mui-numbox-btn-minus,.mui-numbox .mui-numbox-btn-plus{border-radius: 50% !important;}
         .mui-numbox .mui-numbox-btn-minus{left:10px;}
         .mui-numbox .mui-numbox-btn-plus{right:10px;}
-        .mui-numbox .mui-numbox-input, .mui-numbox .mui-input-numbox{border:1px solid #ccc !important;}
+        .mui-numbox .mui-numbox-input, .mui-numbox .mui-input-numbox{border:1px solid #ccc !important; height: none;}
         .mui-numbox [class*=numbox-btn]{width: 20px;color: #fff;background-color: #e50112;}
         .btn {position: relative;top:20px;width: 360px;height: 60px;margin:0 auto;}
         .lbtn,.rbtn{position:absolute;display:inline-block;width:40%;height:40px;}

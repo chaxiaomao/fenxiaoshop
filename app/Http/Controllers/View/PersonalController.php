@@ -41,12 +41,27 @@ class PersonalController extends Controller
 
     public function address(Request $request)
     {
-        $user = session()->get('wechat_user');
+        $wechat_user = session()->get('wechat_user');
         //找出所有地址
-        $address = Address::where('openid', $user['id'])->where('invalid', 0)->where('default', 1)->get();
+        $address = Address::where('openid', $wechat_user['id'])->where('invalid', 0)->where('default', 1)->get();
         //默认地址
-        $default = Address::where('openid', $user['id'])->where('invalid', 0)->where('default', 0)->first();
+        $default = Address::where('openid', $wechat_user['id'])->where('invalid', 0)->where('default', 0)->first();
 
         return view('shop.address')->with(['address' => $address, 'default' => $default]);
+    }
+
+    public function team(Request $request)
+    {
+        $wechat_user = session()->get('wechat_user');
+        $user = Member::where('openid', $wechat_user['id'])->first();
+//        dd($user);
+        $agents = Array();
+        foreach ([$user->p1, $user->p2, $user->p3] as $k => $p) {
+            if ($p > 0) {
+                $agents[$k] = Member::where('uid', $p)->first();
+            }
+        }
+//        dd($agents);
+        return view('shop.team')->with('agents', $agents);
     }
 }

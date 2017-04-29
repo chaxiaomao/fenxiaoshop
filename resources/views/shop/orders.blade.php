@@ -5,16 +5,15 @@
 @section('m-style')
 <style>
     *{padding:0px;margin:0px;font-family: "微软雅黑";}
-    body{background-color:rgb(229,229,229);margin-bottom: 60px;}
-    ul,li{list-style:none}
-    #nul{height:auto;background-color: #fff;width:99%;margin:0 auto;color:gray;}
+    body{background-color:rgb(229,229,229);margin-bottom: 20px;}
+    .tit{width: 100%;background-color: #fff;height: 50px;color:gray;text-align: center;line-height: 50px;}
+    .tit li{width:33%;float: left;font-size:12px; white-space: nowrap;}
+    #nul{height:auto;background-color: #fff;width:99%;margin:0 auto;color:gray;border-bottom: 1px solid #eee;}
     #nul li{display:inline-block;line-height:60px;height: 60px;width:19%;text-align: center;}
     #nul li.active{border-bottom: 3px solid #e50112;}
-    #sul{height: auto;width:99%;margin: 0 auto;color:gray;}
+    #sul{height: auto; margin: 0 auto;color:gray;}
     #sul>li{margin-top:20px;background-color: #fff;}
-    .sli-1{height: auto}
-    .sli-1>li:first-child{border-bottom: 1px solid #ddd;line-height: 50px;font-size: 12px}
-    .sli-1>li span{}
+    #sul>li:first-child{margin-top:0px;}
     .sli-2 img{width:90px;height: 75px;background-color: red;margin-top:20px;}
     .sli-2{height: auto;position: relative;}
     .sli-2 button{position: absolute;bottom:0px;height: 45px;border-radius: 5px;background-color: #e50112;color: #fff;border:none;padding:10px;letter-spacing: 2px;font-size: 13.33px}
@@ -40,11 +39,18 @@
             @foreach($orders as $order)
                 <li id="oitem_{{$order->oid}}">
                     <ul class="sli-1 container-fluid">
-                        <li class="row">
-                            <span id="ordsn_{{$order->oid}}" class="col-md-4">{{$order->ordsn}}</span>
-                            <span class="col-md-4">￥{{$order->money}}</span>
-                            <span class="col-md-4">{{$order->create_at}}</span>
-                        </li>
+                        <div>
+                            <ul class="tit">
+                                <li id="ordsn_{{$order->oid}}">{{$order->ordsn}}</li>
+                                <li>￥{{$order->money}}</li>
+                                <li>{{$order->create_at}}</li>
+                            </ul>
+                        </div>
+                        {{--<li class="row">--}}
+                            {{--<span id="ordsn_{{$order->oid}}" class="col-md-4">{{$order->ordsn}}</span>--}}
+                            {{--<span class="col-md-4">￥{{$order->money}}</span>--}}
+                            {{--<span class="col-md-4">{{$order->create_at}}</span>--}}
+                        {{--</li>--}}
                         <li>
                             <ul class="sli-2">
                                 @foreach($order->item as $pre)

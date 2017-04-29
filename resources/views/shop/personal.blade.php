@@ -57,7 +57,7 @@
                 </a>
             </li>
             <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-                <a href="{{url('wxcshop/personal/team',0)}}">
+                <a href="{{url('/personal/team')}}">
                     <span class="icon iconfont icon-hexintuandui"></span>
 
                     <div class="mspan mui-media-body">我的团队</div>
@@ -94,14 +94,14 @@
         </ul>
     </div>
     <div class="huiyuan">
-        <a href="{{url('wxcshop/personal/team','unbought')}}">未购买会员</a><span style="color:gray">|</span>
-        <a href="{{url('wxcshop/personal/team','bought')}}">已购买会员</a>
+        <a href="{{url('/personal/team')}}">未购买会员</a><span style="color:gray">|</span>
+        <a href="{{url('/personal/team')}}">已购买会员</a>
     </div>
     <div class="more mui-content">
         <div class="mui-row">
             <div class="mui-col-sm-11 mui-col-xs-12">
                 <li class="mui-table-view-cell">
-                    <a href="{{url('wxcshop/personal/team',0)}}">
+                    <a href="{{url('/personal/team')}}">
                         我的会员
                         <span class="icon iconfont icon-chanpinxiangqingqianwang"></span>
                     </a>

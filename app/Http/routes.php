@@ -49,4 +49,5 @@ Route::group(['perfix' => 'personal'], function() {
     Route::get('/personal/revise', 'View\PersonalController@revise');
     Route::get('/personal/orders', 'View\PersonalController@orders');
     Route::get('/personal/address', 'View\PersonalController@address');
+    Route::get('/personal/team', 'View\PersonalController@team');
 });

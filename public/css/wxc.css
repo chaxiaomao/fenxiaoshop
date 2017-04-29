@@ -15,7 +15,7 @@
     -moz-osx-font-smoothing: grayscale;
 }
 /*公共样式*/
-body{margin: 0px; padding:0 0 30px 0; font-size: 13.33px;}
+body{margin: 0px; padding:0 0 30px 0; font-size: 13.33px;font-family: "微软雅黑";}
 a:link{text-decoration: none;}
 li{list-style: none;}
 .mhead {font-weight:bold;letter-spacing:8px;height: 40px;background-color: rgb(244,244,244);color: #e50112;line-height: 40px;text-align: center;}
